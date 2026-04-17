@@ -148,8 +148,12 @@ class App:
             def do_select(selected_index: gr.SelectData):
                 opportunities = self.get_agent_framework().memory
                 row = selected_index.index[0]
+                if row >= len(opportunities):
+                    return
                 opportunity = opportunities[row]
-                self.get_agent_framework().planner.messenger.alert(opportunity)
+                planner = self.get_agent_framework().planner
+                if planner:
+                    planner.messenger.alert(opportunity)
 
             with gr.Row():
                 gr.Markdown(

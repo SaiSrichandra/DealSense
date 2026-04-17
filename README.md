@@ -27,16 +27,6 @@ RSS Feeds → ScannerAgent → Preprocessor → EnsembleAgent\
 (Frontier LLM + Specialist LLM + Neural Network) → Opportunity Scoring →
 Notifications → UI
 
-## Project Structure
-
-dealsense.py --- Gradio UI (main entrypoint)\
-deal_agent_framework.py --- Orchestration and persistence\
-pricer.py --- Modal GPU service for fine-tuned pricer\
-log_utils.py --- ANSI to HTML log formatting\
-memory.json --- Persistent opportunity memory\
-products_vectorstore/ --- ChromaDB persistent store
-agents/ --- All agent implementations
-
 ## Running the Project
 
 ### Requirements

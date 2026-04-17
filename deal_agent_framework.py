@@ -108,9 +108,12 @@ class DealAgentFramework:
         )
         vectors = np.array(result["embeddings"])
         documents = result["documents"]
+        if len(vectors) == 0:
+            return [], np.empty((0, 3)), []
         categories = [metadata["category"] for metadata in result["metadatas"]]
         colors = [COLORS[CATEGORIES.index(c)] for c in categories]
-        tsne = TSNE(n_components=3, random_state=42, n_jobs=-1)
+        perplexity = min(30, len(vectors) - 1)
+        tsne = TSNE(n_components=3, random_state=42, n_jobs=-1, perplexity=perplexity)
         reduced_vectors = tsne.fit_transform(vectors)
         return documents, reduced_vectors, colors
 
